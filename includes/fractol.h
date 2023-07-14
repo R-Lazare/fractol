@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:09:09 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/14 18:41:41 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/14 23:41:15 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_data
 	int		height;
 	int		zoom;
 	char	*addr;
+	int		**colorset;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -59,6 +60,6 @@ double		module(n_c C);
 int			mouse_hook(int button, int x, int y, t_data *img);
 int			julia(t_data img);
 int			julia_calc(n_c c, n_c z, int max_iter);
-int	colors(int m, int max_iter, t_data img);
-
+int			colors(int m, int max_iter, t_data img);
+int			**getlist(double b);
 #endif

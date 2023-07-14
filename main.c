@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:18:35 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/14 19:11:55 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/15 00:55:58 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	main_julia(t_data img)
 {
 	img.zoom = 0;
 	img.mlx = mlx_init();
-	img.width = 500;
-	img.height = 500;
+	img.width = 600;
+	img.height = 600;
 	img.xmin = -1;
 	img.xmax = 1;
 	img.ymin = -1.2;

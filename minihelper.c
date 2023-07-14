@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:32:00 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/14 18:48:40 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/15 00:36:02 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int	key_hook(int keycode, t_data *img)
 {
 	if (keycode == 65307)
 		exit(0);
+	if (keycode == 32)
+	{
+		img->colorint++;
+	}
 	if (keycode == 65362)
 	{
 		img->ymin = img->ymin - 0.1 * (1 / cosh(pow(img->zoom, 0.75)));

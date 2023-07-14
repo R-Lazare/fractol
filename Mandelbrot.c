@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:32:10 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/14 20:11:30 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/15 01:03:50 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ int	mandelbrot(t_data img)
 	n_c		c;
 	int		max_iter;
 
-	max_iter = 50 + (int)(img.zoom * 1.3);
+	max_iter = (int)(50 + img.zoom * 1.3);
 	x = 0;
+	img.colorset = getlist(img.colorint);
 	while (x <= img.width)
 	{
 		y = 0;
