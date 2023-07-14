@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:32:10 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/14 18:51:52 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/14 20:11:30 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	mandelbrot_calc(n_c c, int max_iter)
 	}
 	if (i == max_iter)
 		return (max_iter);
-	return (i + 1 - log(log(mod)) / log(1.125));
+	return (i + 1 - log(log(mod)) / log(1.3));
 }
 
 int	mandelbrot(t_data img)

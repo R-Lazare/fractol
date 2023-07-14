@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:42:00 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/14 19:29:03 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/14 20:12:20 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	julia(t_data img)
 
 	max_iter = 95 + (int)(img.zoom * 1.2);
 	x = 0;
-	c.re = 0.285;
-	c.img = 0.01;
+	c.re = -0.8;
+	c.img = 0.156;
 	while (x <= img.width)
 	{
 		y = 0;
