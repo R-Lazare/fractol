@@ -1,56 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 16:32:10 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/14 18:51:52 by rluiz            ###   ########.fr       */
+/*   Created: 2023/07/14 17:42:00 by rluiz             #+#    #+#             */
+/*   Updated: 2023/07/14 19:29:03 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
 
-int	mandelbrot_calc(n_c c, int max_iter)
+int	julia_calc(n_c c, n_c z0, int max_iter)
 {
-	n_c		z;
-	int		i;
-	double	mod;
+	int	i;
+	n_c	z;
 
-	z.re = 0;
-	z.img = 0;
+	z = z0;
 	i = 0;
-	mod = 0;
-	while (i < max_iter && mod < 2)
+	while (i < max_iter)
 	{
 		z = sum_i(pow_i(z), c);
-		mod = module(z);
+		if (module(z) > 2)
+			break ;
 		i++;
 	}
 	if (i == max_iter)
 		return (max_iter);
-	return (i + 1 - log(log(mod)) / log(1.125));
+	return (i + 1 - log(log(module(z))) / log(1.30));
 }
 
-int	mandelbrot(t_data img)
+int	julia(t_data img)
 {
-	double	x;
-	double	y;
-	int		m;
-	n_c		c;
-	int		max_iter;
+	double x;
+	double y;
+	int m;
+	n_c c;
+	n_c z0;
+	int max_iter;
 
-	max_iter = 50 + (int)(img.zoom * 1.3);
+	max_iter = 95 + (int)(img.zoom * 1.2);
 	x = 0;
+	c.re = 0.285;
+	c.img = 0.01;
 	while (x <= img.width)
 	{
 		y = 0;
 		while (y <= img.height)
 		{
-			c.re = img.xmin + (x / img.width) * (img.xmax - img.xmin);
-			c.img = img.ymin + (y / img.height) * (img.ymax - img.ymin);
-			m = mandelbrot_calc(c, max_iter);
+			z0.re = img.xmin + (x / img.width) * (img.xmax - img.xmin);
+			z0.img = img.ymin + (y / img.height) * (img.ymax - img.ymin);
+			m = julia_calc(c, z0, max_iter);
 			my_mlx_pixel_put(&img, (int)x, (int)y, colors(m, max_iter, img));
 			y++;
 		}

@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:32:00 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/13 21:15:26 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/14 18:48:40 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	create_trgb(int t, int r, int g, int b)
 
 int	key_hook(int keycode, t_data *img)
 {
-	printf("%d\n", img->zoom);
 	if (keycode == 65307)
 		exit(0);
 	if (keycode == 65362)
@@ -54,7 +53,7 @@ int	key_hook(int keycode, t_data *img)
 	img->img = mlx_new_image(img->mlx, img->width, img->height);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 		&img->line_length, &img->endian);
-	mandelbrot(*img);
+	img->current_fractal(*img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 	return (0);
 }
@@ -83,8 +82,7 @@ int	mouse_hook(int button, int x, int y, t_data *img)
 	img->img = mlx_new_image(img->mlx, img->width, img->height);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 		&img->line_length, &img->endian);
-	mandelbrot(*img);
+	img->current_fractal(*img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
-
 	return (0);
 }

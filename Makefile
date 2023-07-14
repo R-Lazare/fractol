@@ -5,7 +5,9 @@ CC	=	cc
 SRC =	main.c \
 		Mandelbrot.c \
 		minihelper.c \
-		mymath.c
+		mymath.c \
+		julia.c \
+		colors.c
 
 OBJ = ${SRC:.c=.o}
 CFLAGS = -Wall -Wextra -Werror -g
