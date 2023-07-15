@@ -13,7 +13,7 @@
 
 extern int	(*(mlx_int_param_event[]))();
 
-static int	win_count(t_xvar *xvar)
+static int	wit_count(t_xvar *xvar)
 {
 	int			i;
 	t_win_list	*win;
@@ -41,7 +41,7 @@ int			mlx_loop(t_xvar *xvar)
 
 	mlx_int_set_win_event_mask(xvar);
 	xvar->do_flush = 0;
-	while (win_count(xvar) && !xvar->end_loop)
+	while (wit_count(xvar) && !xvar->end_loop)
 	{
 		while (!xvar->end_loop && (!xvar->loop_hook || XPending(xvar->display)))
 		{

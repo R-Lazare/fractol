@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mymath.c                                           :+:      :+:    :+:   */
+/*   ft_atod.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 16:31:54 by rluiz             #+#    #+#             */
+/*   Created: 2023/07/15 16:27:58 by rluiz             #+#    #+#             */
 /*   Updated: 2023/07/15 17:57:27 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_c	mult_c(t_c a, t_c b)
+double	ft_atod(char *str)
 {
-	t_c	c;
+	double	nb;
+	int		i;
+	int		sign;
+	int		j;
 
-	c.re = a.re * b.re - a.img * b.img;
-	c.img = a.re * b.img + a.img * b.re;
-	return (c);
-}
-
-t_c	pow_i(t_c c)
-{
-	return (mult_c(c, c));
-}
-
-t_c	sum_i(t_c a, t_c b)
-{
-	t_c	c;
-
-	c.re = a.re + b.re;
-	c.img = a.img + b.img;
-	return (c);
-}
-
-double	module(t_c c)
-{
-	return (sqrt(pow(c.re, 2) + pow(c.img, 2)));
+	nb = 0;
+	i = 0;
+	sign = 1;
+	if (str[i] == '-')
+		sign = -1;
+	while (str[i] >= '0' && str[i] <= '9')
+		nb = nb * 10 + (str[i++] - '0');
+	if (str[i] == '.')
+	{
+		str++;
+		j = 10;
+		while (str[i] >= '0' && str[i] <= '9')
+		{
+			nb = nb + (double)(str[i] - '0') / j;
+			str++;
+			j *= 10;
+		}
+	}
+	return (nb * sign);
 }

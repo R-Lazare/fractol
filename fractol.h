@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 16:09:09 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/15 14:42:56 by rluiz            ###   ########.fr       */
+/*   Created: 2023/07/15 17:37:11 by rluiz             #+#    #+#             */
+/*   Updated: 2023/07/15 17:37:46 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL
+#ifndef FRACTOL_H
 
-# define FRACTOL
+# define FRACTOL_H
 # include "minilibx-linux/mlx.h"
 # include <math.h>
 # include <stdio.h>
@@ -33,6 +33,8 @@ typedef struct s_data
 	int		endian;
 	void	*mlx;
 	double	xmin;
+	double	c1;
+	double	c2;
 	double	xmax;
 	int		colorint;
 	double	ymin;
@@ -46,20 +48,21 @@ typedef struct nb_c
 {
 	double	re;
 	double	img;
-}			n_c;
+}			t_c;
 
 int			facto(int n);
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void		my_pixel_put(t_data *data, int x, int y, int color);
 int			create_trgb(int t, int r, int g, int b);
 int			key_hook(int keycode, t_data *img);
 int			mandelbrot(t_data img);
-n_c			mult_c(n_c a, n_c b);
-n_c			pow_i(n_c c);
-n_c			sum_i(n_c a, n_c b);
-double		module(n_c C);
+t_c			mult_c(t_c a, t_c b);
+t_c			pow_i(t_c c);
+t_c			sum_i(t_c a, t_c b);
+double		module(t_c C);
+double		ft_atod(char *str);
 int			mouse_hook(int button, int x, int y, t_data *img);
 int			julia(t_data img);
-int			julia_calc(n_c c, n_c z, int max_iter);
 int			colors(int m, int max_iter, t_data img);
 int			**getlist(double b);
+int			key_hook_arrows(int keycode, t_data *img);
 #endif
