@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 17:37:11 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/15 18:06:58 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/15 18:40:01 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,17 @@
 # define FRACTOL_H
 # include "includes/minilibx-linux/mlx.h"
 # include <math.h>
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 
+typedef struct s_arena
+{
+	void	*buf;
+	size_t	buf_size;
+	size_t	prev_offset;
+	size_t	curr_offset;
+}			t_arena;
 typedef struct s_data
 {
 	void	*img;
@@ -25,6 +33,7 @@ typedef struct s_data
 	int		(*current_fractal)(struct s_data);
 	int		max_iter;
 	int		height;
+	void	*arena;
 	int		zoom;
 	char	*addr;
 	int		**colorset;
@@ -59,10 +68,15 @@ t_c			mult_c(t_c a, t_c b);
 t_c			pow_i(t_c c);
 t_c			sum_i(t_c a, t_c b);
 double		module(t_c C);
+int			ft_strcmp(const char *s1, const char *s2);
 double		ft_atod(char *str);
 int			mouse_hook(int button, int x, int y, t_data *img);
 int			julia(t_data img);
 int			colors(int m, int max_iter, t_data img);
-int			**getlist(double b);
+int			**getlist(double b, t_data img);
 int			key_hook_arrows(int keycode, t_data *img);
+void		*arena_init(size_t buffer_size);
+void		arena_reset(t_arena *a);
+void		*arena_alloc(t_arena *a, size_t size);
+void		arena_destroy(t_arena *a);
 #endif

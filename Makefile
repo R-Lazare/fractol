@@ -8,7 +8,9 @@ SRC =	main.c \
 		mymath.c \
 		julia.c \
 		colors.c \
-		ft_atod.c
+		ft_atod.c \
+		arena.c \
+		arena_alloc.c
 
 OBJ = ${SRC:.c=.o}
 CFLAGS = -Wall -Wextra -Werror -g

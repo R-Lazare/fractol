@@ -6,25 +6,11 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:18:35 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/15 17:57:27 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/15 19:08:34 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] != 0 && s2[i] != 0)
-	{
-		if (s1[i] != s2[i])
-			return ((s1[i] - s2[i]));
-		i++;
-	}
-	return (0);
-}
 
 int	main_mandelbrot(t_data img)
 {
@@ -77,32 +63,39 @@ int	main_julia(t_data img, double c1, double c2)
 	mlx_key_hook(img.win, key_hook, &img);
 	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
 	mlx_loop(img.mlx);
+	arena_destroy(img.arena);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	img;
-	char	*str1;
-	char	*str2;
 
+	img.arena = arena_init(2147483640);
+	if (argc < 2 || argc > 4)
+	{
+		printf("Error\n");
+		arena_destroy(img.arena);
+		return (0);
+	}
 	if (ft_strcmp(argv[1], "mandelbrot") == 0)
 	{
 		main_mandelbrot(img);
+		arena_destroy(img.arena);
 	}
 	else if (ft_strcmp(argv[1], "julia") == 0)
 	{
 		if (argc < 4)
 		{
 			printf("Error\n");
+			arena_destroy(img.arena);
 			return (0);
 		}
-		str1 = argv[2];
-		str2 = argv[3];
-		main_julia(img, ft_atod(str1), ft_atod(str2));
+		main_julia(img, ft_atod(argv[2]), ft_atod(argv[3]));
 	}
 	else if (ft_strcmp(argv[1], "burningship") == 0)
 	{
 		printf("burningship\n");
 	}
+	arena_destroy(img.arena);
 }

@@ -6,22 +6,22 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 18:48:13 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/15 17:57:27 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/15 19:11:58 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static double	*getlist_helper(double b, int n)
+static double	*getlist_helper(double b, int n, t_data img)
 {
 	double	*u;
 	double	*rs;
 	double	*x;
 	int		i;
 
-	rs = malloc(n * sizeof(double));
-	x = malloc(n * sizeof(double));
-	u = malloc(n * sizeof(double));
+	rs = arena_alloc(img.arena, n * sizeof(double));
+	x = arena_alloc(img.arena, n * sizeof(double));
+	u = arena_alloc(img.arena, n * sizeof(double));
 	i = 0;
 	while (i < n)
 	{
@@ -41,7 +41,7 @@ static double	*getlist_helper(double b, int n)
 	return (u);
 }
 
-int	**getlist(double b)
+int	**getlist(double b, t_data img)
 {
 	int		j;
 	int		**list;
@@ -49,22 +49,20 @@ int	**getlist(double b)
 	int		*x;
 
 	j = 0;
-	list = malloc(200 * sizeof(int *));
-	u = getlist_helper(b, 200);
-	x = malloc(200 * sizeof(int));
+	list = arena_alloc(img.arena, 200 * sizeof(int *));
+	u = getlist_helper(b, 200, img);
+	x = arena_alloc(img.arena, 200 * sizeof(int));
 	while (j++ < 200)
 		x[j] = round(u[j % 200] * 255);
 	j = 0;
 	while (j < 200)
 	{
-		list[j / 4] = malloc(3 * sizeof(int));
+		list[j / 4] = arena_alloc(img.arena, 3 * sizeof(int));
 		list[j / 4][0] = x[j] * x[(j + 4) % 200] % 256;
 		list[j / 4][1] = x[(j + 1) % 200] * x[(j + 4) % 200] % 256;
 		list[j / 4][2] = x[(j + 2) % 200] * x[(j + 4) % 200] % 256;
 		j += 4;
 	}
-	free(u);
-	free(x);
 	return (list);
 }
 
@@ -76,7 +74,7 @@ int	*colors_helper(int m, int max_iter, t_data img)
 
 	c = 22;
 	i = 0;
-	color = malloc(sizeof(int) * 3);
+	color = arena_alloc(img.arena, sizeof(int) * 3);
 	while (i < c)
 	{
 		if (m < max_iter / c * (i + 1))
@@ -99,7 +97,7 @@ int	colors(int m, int max_iter, t_data img)
 	int	*color;
 	int	i;
 
-	color = malloc(sizeof(int) * 3);
+	color = arena_alloc(img.arena, sizeof(int) * 3);
 	if (color == NULL)
 	{
 		return (0);
@@ -115,7 +113,6 @@ int	colors(int m, int max_iter, t_data img)
 		color = colors_helper(m, max_iter, img);
 	}
 	i = create_trgb(0, color[0], color[1], color[2]);
-	free(color);
 	return (i);
 }
 

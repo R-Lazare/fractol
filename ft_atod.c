@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:27:58 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/15 17:57:27 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/15 18:16:09 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,18 @@ double	ft_atod(char *str)
 		}
 	}
 	return (nb * sign);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] != 0 && s2[i] != 0)
+	{
+		if (s1[i] != s2[i])
+			return ((s1[i] - s2[i]));
+		i++;
+	}
+	return (0);
 }
