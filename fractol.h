@@ -6,14 +6,14 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 17:37:11 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/15 17:37:46 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/15 18:06:58 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 
 # define FRACTOL_H
-# include "minilibx-linux/mlx.h"
+# include "includes/minilibx-linux/mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
