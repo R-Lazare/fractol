@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:32:00 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/15 17:57:27 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/15 20:03:42 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,14 @@ int	key_hook_arrows(int keycode, t_data *img)
 int	key_hook(int keycode, t_data *img)
 {
 	if (keycode == 65307)
+	{
+		mlx_destroy_image(img->mlx, img->img);
+		mlx_destroy_window(img->mlx, img->win);
+		mlx_destroy_display(img->mlx);
+		free(img->mlx);
+		arena_destroy(img->arena);
 		exit(0);
+	}
 	if (keycode == 32)
 		img->colorint++;
 	if (keycode == 51)

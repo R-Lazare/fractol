@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 18:48:13 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/15 19:11:58 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/15 19:39:32 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,21 +97,7 @@ int	colors(int m, int max_iter, t_data img)
 	int	*color;
 	int	i;
 
-	color = arena_alloc(img.arena, sizeof(int) * 3);
-	if (color == NULL)
-	{
-		return (0);
-	}
-	if (m == max_iter)
-	{
-		color[0] = (int)(img.colorset[0][0] / 100);
-		color[1] = (int)(img.colorset[0][1] / 100);
-		color[2] = (int)(img.colorset[0][2] / 100);
-	}
-	else
-	{
-		color = colors_helper(m, max_iter, img);
-	}
+	color = colors_helper(m, max_iter, img);
 	i = create_trgb(0, color[0], color[1], color[2]);
 	return (i);
 }

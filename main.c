@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:18:35 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/15 19:26:48 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/15 19:59:30 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	main(int argc, char **argv)
 {
 	t_data	img;
 
-	img.arena = arena_init(2147483640);
+	img.arena = arena_init(2147483647);
 	if (argc < 2 || argc > 4)
 	{
 		arena_destroy(img.arena);
