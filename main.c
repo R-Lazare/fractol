@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:18:35 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/15 19:08:34 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/15 19:23:13 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	main_julia(t_data img, double c1, double c2)
 	mlx_key_hook(img.win, key_hook, &img);
 	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
 	mlx_loop(img.mlx);
-	arena_destroy(img.arena);
 	return (0);
 }
 
@@ -76,7 +75,6 @@ int	main(int argc, char **argv)
 	{
 		printf("Error\n");
 		arena_destroy(img.arena);
-		return (0);
 	}
 	if (ft_strcmp(argv[1], "mandelbrot") == 0)
 	{
@@ -92,10 +90,7 @@ int	main(int argc, char **argv)
 			return (0);
 		}
 		main_julia(img, ft_atod(argv[2]), ft_atod(argv[3]));
+		arena_destroy(img.arena);
 	}
-	else if (ft_strcmp(argv[1], "burningship") == 0)
-	{
-		printf("burningship\n");
-	}
-	arena_destroy(img.arena);
+	return (0);
 }
