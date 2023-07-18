@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:31:54 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/15 17:57:27 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/18 16:50:36 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ t_c	mult_c(t_c a, t_c b)
 t_c	pow_i(t_c c)
 {
 	return (mult_c(c, c));
+}
+
+t_c	pow_inti(t_c c)
+{
+	if (c.re < 0)
+		c.re = -c.re;
+	if (c.img < 0)
+		c.img = -c.img;
+	c.re = c.re * c.re - c.img * c.img;
+	c.img = 2 * c.re * c.img;
+	return (c);
 }
 
 t_c	sum_i(t_c a, t_c b)
