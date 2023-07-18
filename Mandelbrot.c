@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:32:10 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/18 17:39:12 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/18 19:42:36 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ int	mandelbrot_calc(t_c c, t_data img)
 		i++;
 	}
 	if (i == img.max_iter)
-		return (img.max_iter);
-	return (i + log(log(i)) / log(1.75));
+		return (i);
+	return (i + 1 - log(log(module(z))) / log(1.4 - (0.75 + cos(img.colorint
+					/ 10) / 3)));
 }
 
 int	mandelbrot(t_data img)
@@ -42,6 +43,7 @@ int	mandelbrot(t_data img)
 
 	x = 0;
 	img.colorset = getlist(img.colorint, img, img.colorint * 200);
+	img.colorpalette = colors(img.max_iter, img);
 	while (x <= img.width)
 	{
 		y = 0;
@@ -50,7 +52,7 @@ int	mandelbrot(t_data img)
 			c.re = img.xmin + (x / img.width) * (img.xmax - img.xmin);
 			c.img = img.ymin + (y / img.height) * (img.ymax - img.ymin);
 			m = mandelbrot_calc(c, img);
-			my_pixel_put(&img, (int)x, (int)y, colors(m, img.max_iter, img));
+			my_pixel_put(&img, (int)x, (int)y, img.colorpalette[m]);
 			y++;
 		}
 		x++;

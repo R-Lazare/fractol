@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 18:48:13 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/18 17:55:44 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/18 19:48:41 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	**getlist(double b, t_data img, int n)
 	list = arena_alloc(img.arena, n * sizeof(int *));
 	u = getlist_helper(b, n, img);
 	x = arena_alloc(img.arena, n * sizeof(int));
+	n = n - (int)(0.95 * n);
 	while (j++ < n)
 		x[j] = round(u[j % n] * 255);
 	j = 0;
@@ -72,6 +73,8 @@ int	*colors_helper(int m, int max_iter, t_data img)
 	int	i;
 	int	c;
 
+	if (img.colorint > max_iter / 2 - 1)
+		img.colorint -= 1;
 	c = img.colorint;
 	i = 0;
 	color = arena_alloc(img.arena, sizeof(int) * 3);
@@ -92,14 +95,21 @@ int	*colors_helper(int m, int max_iter, t_data img)
 	return (color);
 }
 
-int	colors(int m, int max_iter, t_data img)
+int	*colors(int max_iter, t_data img)
 {
 	int	*color;
 	int	i;
+	int	*list;
 
-	color = colors_helper(m, max_iter, img);
-	i = create_trgb(0, color[0], color[1], color[2]);
-	return (i);
+	list = (int *)arena_alloc(img.arena, sizeof(int) * max_iter);
+	i = 0;
+	while (i < max_iter)
+	{
+		color = colors_helper(i, max_iter, img);
+		list[i] = create_trgb(0, color[0], color[1], color[2]);
+		i++;
+	}
+	return (list);
 }
 
 int	create_trgb(int t, int r, int g, int b)

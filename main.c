@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:18:35 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/18 18:19:02 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/18 20:56:12 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	main_mandelbrot(t_data img)
 {
 	img.zoom = 0;
 	img.mlx = mlx_init();
-	img.width = 600;
-	img.height = 400;
+	img.width = 900;
+	img.height = 600;
 	img.xmin = -2;
+	img.max_iter = 20;
 	img.xmax = 1;
 	img.colorint = 1;
 	img.ymin = -1;
@@ -42,10 +43,11 @@ int	main_julia(t_data img, double c1, double c2)
 {
 	img.zoom = 0;
 	img.mlx = mlx_init();
-	img.width = 500;
-	img.height = 500;
+	img.width = 900;
+	img.height = 900;
 	img.xmin = -1;
 	img.xmax = 1;
+	img.max_iter = 20;
 	img.ymin = -1.2;
 	img.c1 = c1 + 0.285;
 	img.c2 = c2 - 0.01;
@@ -70,8 +72,9 @@ int	main_burningship(t_data img)
 {
 	img.zoom = 0;
 	img.mlx = mlx_init();
-	img.width = 600;
-	img.height = 600;
+	img.width = 900;
+	img.height = 900;
+	img.max_iter = 0;
 	img.xmin = -2;
 	img.xmax = 1.5;
 	img.colorint = 1;
@@ -97,6 +100,8 @@ int	main(int argc, char **argv)
 	t_data	img;
 
 	img.arena = arena_init(2147483647);
+	if (img.arena == NULL)
+		return (0);
 	if (argc < 2 || argc > 4)
 		arena_destroy(img.arena);
 	else if (ft_strcmp(argv[1], "mandelbrot") == 0)

@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 17:37:11 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/18 17:13:26 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/18 19:22:59 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_data
 	int		max_iter;
 	int		height;
 	void	*arena;
+	int		*colorpalette;
 	int		zoom;
 	char	*addr;
 	int		**colorset;
@@ -72,7 +73,7 @@ int			ft_strcmp(const char *s1, const char *s2);
 double		ft_atod(char *str);
 int			mouse_hook(int button, int x, int y, t_data *img);
 int			julia(t_data img);
-int			colors(int m, int max_iter, t_data img);
+int			*colors(int max_iter, t_data img);
 int			**getlist(double b, t_data img, int n);
 int			key_hook_arrows(int keycode, t_data *img);
 void		*arena_init(size_t buffer_size);
