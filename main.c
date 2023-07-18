@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:18:35 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/18 18:12:37 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:19:02 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	main(int argc, char **argv)
 	img.arena = arena_init(2147483647);
 	if (argc < 2 || argc > 4)
 		arena_destroy(img.arena);
-	if (ft_strcmp(argv[1], "mandelbrot") == 0)
+	else if (ft_strcmp(argv[1], "mandelbrot") == 0)
 		main_mandelbrot(img);
 	else if (ft_strcmp(argv[1], "julia") == 0)
 	{
