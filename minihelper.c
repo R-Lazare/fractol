@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:32:00 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/18 21:00:14 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/25 16:13:45 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	refresh_image(t_data *img)
 	mlx_destroy_image(img->mlx, img->img);
 	img->img = mlx_new_image(img->mlx, img->width, img->height);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-		&img->line_length, &img->endian);
+			&img->line_length, &img->endian);
 	img->current_fractal(*img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }
@@ -63,9 +63,9 @@ int	key_hook(int keycode, t_data *img)
 		freeall(img);
 	}
 	if (keycode == 65451)
-		img->max_iter += 10;
+		img->max_iter += 5;
 	if (keycode == 65453)
-		img->max_iter -= 10;
+		img->max_iter -= 5;
 	if (img->max_iter < 1)
 		img->max_iter = 1;
 	if (keycode == 32)

@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:18:35 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/18 20:56:12 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/25 16:03:56 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ int	main(int argc, char **argv)
 	{
 		if (argc < 4)
 			arena_destroy(img.arena);
-		main_julia(img, ft_atod(argv[2]), ft_atod(argv[3]));
+		else
+			main_julia(img, ft_atod(argv[2]), ft_atod(argv[3]));
 	}
 	else if (ft_strcmp(argv[1], "burningship") == 0)
 		main_burningship(img);
