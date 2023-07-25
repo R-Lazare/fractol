@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:18:35 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/25 17:09:11 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:14:00 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	main_burningship(t_data img)
 
 void	julia_no_args(t_data img)
 {
-	write(1, "Usage: ./fractol julia re(C) img(C)\n", 36);
+	write(1, "Usage: ./fractol fractal re(C) img(C)\n", 38);
 	arena_destroy(img.arena);
 }
 
@@ -113,7 +113,7 @@ int	main(int argc, char **argv)
 	if (img.arena == NULL)
 		return (0);
 	if (argc < 2 || argc > 4)
-		arena_destroy(img.arena);
+		julia_no_args(img);
 	else if (ft_strcmp(argv[1], "mandelbrot") == 0)
 		main_mandelbrot(img);
 	else if (ft_strcmp(argv[1], "julia") == 0)
