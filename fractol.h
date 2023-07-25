@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 17:37:11 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/25 17:09:38 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:49:04 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct s_data
 	int		zoom;
 	char	*addr;
 	int		**colorset;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bpp;
+	int		ll;
 	int		endian;
 	void	*mlx;
 	double	xmin;
@@ -81,7 +81,7 @@ void		*arena_init(size_t buffer_size);
 void		arena_reset(t_arena *a);
 void		*arena_alloc(t_arena *a, size_t size);
 void		arena_destroy(t_arena *a);
-void		freeall(t_data *img);
+int			freeall(t_data *img);
 int			burningship(t_data img);
 t_c			pow_inti(t_c c);
 #endif

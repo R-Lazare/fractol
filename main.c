@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:18:35 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/25 17:14:00 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:50:12 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	main_mandelbrot(t_data img)
 	img.mlx = mlx_init();
 	img.win = mlx_new_window(img.mlx, img.width, img.height, "Mandelbrot");
 	img.img = mlx_new_image(img.mlx, img.width, img.height);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);
+	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.ll, &img.endian);
 	img.current_fractal = &mandelbrot;
 	img.current_fractal(img);
 	mlx_mouse_hook(img.win, mouse_hook, &img);
 	mlx_key_hook(img.win, key_hook, &img);
+	mlx_hook(img.win, 17, 0, freeall, &img);
 	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
 	mlx_loop(img.mlx);
 	return (0);
@@ -59,12 +59,12 @@ int	main_julia(t_data img)
 	img.mlx = mlx_init();
 	img.win = mlx_new_window(img.mlx, img.width, img.height, "Julia");
 	img.img = mlx_new_image(img.mlx, img.width, img.height);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);
+	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.ll, &img.endian);
 	img.current_fractal = &julia;
 	img.current_fractal(img);
 	mlx_mouse_hook(img.win, mouse_hook, &img);
 	mlx_key_hook(img.win, key_hook, &img);
+	mlx_hook(img.win, 17, 0, freeall, &img);
 	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
 	mlx_loop(img.mlx);
 	return (0);
@@ -88,12 +88,12 @@ int	main_burningship(t_data img)
 	img.mlx = mlx_init();
 	img.win = mlx_new_window(img.mlx, img.width, img.height, "Burningship");
 	img.img = mlx_new_image(img.mlx, img.width, img.height);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);
+	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.ll, &img.endian);
 	img.current_fractal = &burningship;
 	img.current_fractal(img);
 	mlx_mouse_hook(img.win, mouse_hook, &img);
 	mlx_key_hook(img.win, key_hook, &img);
+	mlx_hook(img.win, 17, 0, freeall, &img);
 	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
 	mlx_loop(img.mlx);
 	return (0);

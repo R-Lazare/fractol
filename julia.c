@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:42:00 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/18 20:58:27 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:51:50 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int	julia(t_data img)
 	x = 0;
 	c.re = img.c1;
 	c.img = img.c2;
-	img.colorset = getlist(img.colorint, img, img.colorint * 200);
-	img.colorpalette = colors(img.max_iter, img);
 	while (x <= img.width)
 	{
 		y = 0;

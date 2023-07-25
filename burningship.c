@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:51:47 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/18 19:50:56 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:51:39 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ int	burningship(t_data img)
 	t_c		c;
 
 	x = 0;
-	img.colorset = getlist(img.colorint, img, img.colorint * 200);
-	img.colorpalette = colors(img.max_iter, img);
 	while (x <= img.width)
 	{
 		y = 0;
@@ -79,7 +77,7 @@ int	burningship(t_data img)
 	return (0);
 }
 
-void	freeall(t_data *img)
+int	freeall(t_data *img)
 {
 	if (img->arena)
 	{
@@ -96,4 +94,5 @@ void	freeall(t_data *img)
 		}
 	}
 	exit(0);
+	return (0);
 }

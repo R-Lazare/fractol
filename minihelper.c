@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:32:00 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/25 16:43:48 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/25 17:50:35 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	my_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = data->addr + (y * data->ll + x * (data->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -24,8 +24,8 @@ void	refresh_image(t_data *img)
 {
 	mlx_destroy_image(img->mlx, img->img);
 	img->img = mlx_new_image(img->mlx, img->width, img->height);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-			&img->line_length, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp,
+			&img->ll, &img->endian);
 	img->current_fractal(*img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }
