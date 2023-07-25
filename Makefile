@@ -10,7 +10,8 @@ SRC =	main.c \
 		colors.c \
 		ft_atod.c \
 		arena.c \
-		arena_alloc.c
+		arena_alloc.c \
+		burningship.c
 
 OBJ = ${SRC:.c=.o}
 CFLAGS = -Wall -Wextra -Werror -g

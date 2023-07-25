@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:32:00 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/15 20:05:46 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/25 16:13:45 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,16 @@ int	key_hook(int keycode, t_data *img)
 {
 	if (keycode == 65307)
 	{
-		mlx_destroy_image(img->mlx, img->img);
-		mlx_destroy_window(img->mlx, img->win);
-		mlx_destroy_display(img->mlx);
-		free(img->mlx);
-		arena_destroy(img->arena);
-		exit(0);
+		freeall(img);
 	}
+	if (keycode == 65451)
+		img->max_iter += 5;
+	if (keycode == 65453)
+		img->max_iter -= 5;
+	if (img->max_iter < 1)
+		img->max_iter = 1;
 	if (keycode == 32)
-		img->colorint++;
+		img->colorint = img->colorint + 1 * (img->max_iter > img->colorint);
 	if (keycode == 51)
 		img->c2 += 0.04;
 	if (keycode == 52)
