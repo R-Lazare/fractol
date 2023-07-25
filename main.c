@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:18:35 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/25 16:03:56 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/25 16:47:38 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 int	main_mandelbrot(t_data img)
 {
 	img.zoom = 0;
-	img.mlx = mlx_init();
-	img.width = 900;
-	img.height = 600;
+	img.width = 700;
+	img.height = 466;
 	img.xmin = -2;
 	img.max_iter = 20;
 	img.xmax = 1;
@@ -26,6 +25,9 @@ int	main_mandelbrot(t_data img)
 	img.ymax = 1;
 	img.x0 = (img.xmax - img.xmin) / 2;
 	img.y0 = (img.ymax - img.ymin) / 2;
+	img.colorset = getlist(img.colorint, img, img.colorint * 200);
+	img.colorpalette = colors(img.max_iter, img);
+	img.mlx = mlx_init();
 	img.win = mlx_new_window(img.mlx, img.width, img.height, "Mandelbrot");
 	img.img = mlx_new_image(img.mlx, img.width, img.height);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
@@ -39,22 +41,22 @@ int	main_mandelbrot(t_data img)
 	return (0);
 }
 
-int	main_julia(t_data img, double c1, double c2)
+int	main_julia(t_data img)
 {
 	img.zoom = 0;
-	img.mlx = mlx_init();
-	img.width = 900;
-	img.height = 900;
+	img.width = 700;
+	img.height = 700;
 	img.xmin = -1;
 	img.xmax = 1;
 	img.max_iter = 20;
 	img.ymin = -1.2;
-	img.c1 = c1 + 0.285;
-	img.c2 = c2 - 0.01;
 	img.ymax = 1.2;
 	img.colorint = 1;
 	img.x0 = (img.xmax - img.xmin) / 2;
 	img.y0 = (img.ymax - img.ymin) / 2;
+	img.colorset = getlist(img.colorint, img, img.colorint * 200);
+	img.colorpalette = colors(img.max_iter, img);
+	img.mlx = mlx_init();
 	img.win = mlx_new_window(img.mlx, img.width, img.height, "Julia");
 	img.img = mlx_new_image(img.mlx, img.width, img.height);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
@@ -71,17 +73,19 @@ int	main_julia(t_data img, double c1, double c2)
 int	main_burningship(t_data img)
 {
 	img.zoom = 0;
-	img.mlx = mlx_init();
-	img.width = 900;
-	img.height = 900;
-	img.max_iter = 0;
+	img.width = 700;
+	img.height = 700;
+	img.max_iter = 10;
 	img.xmin = -2;
 	img.xmax = 1.5;
 	img.colorint = 1;
 	img.ymin = -2;
 	img.ymax = 0.5;
+	img.colorset = getlist(img.colorint, img, img.colorint * 200);
+	img.colorpalette = colors(img.max_iter, img);
 	img.x0 = (img.xmax - img.xmin) / 2;
 	img.y0 = (img.ymax - img.ymin) / 2;
+	img.mlx = mlx_init();
 	img.win = mlx_new_window(img.mlx, img.width, img.height, "Burningship");
 	img.img = mlx_new_image(img.mlx, img.width, img.height);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
@@ -111,7 +115,11 @@ int	main(int argc, char **argv)
 		if (argc < 4)
 			arena_destroy(img.arena);
 		else
-			main_julia(img, ft_atod(argv[2]), ft_atod(argv[3]));
+		{
+			img.c1 = ft_atod(argv[2]);
+			img.c2 = ft_atod(argv[3]);
+			main_julia(img);
+		}
 	}
 	else if (ft_strcmp(argv[1], "burningship") == 0)
 		main_burningship(img);

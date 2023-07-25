@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:32:00 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/25 16:13:45 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/07/25 16:43:48 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	key_hook_arrows(int keycode, t_data *img)
 		img->xmin = img->xmin + 0.1 * (1 / cosh(pow(img->zoom, 0.75)));
 		img->xmax = img->xmax + 0.1 * (1 / cosh(pow(img->zoom, 0.75)));
 	}
+	if (keycode == 50)
+		img->c1 -= 0.04;
 	refresh_image(img);
 	return (0);
 }
@@ -59,9 +61,7 @@ int	key_hook_arrows(int keycode, t_data *img)
 int	key_hook(int keycode, t_data *img)
 {
 	if (keycode == 65307)
-	{
 		freeall(img);
-	}
 	if (keycode == 65451)
 		img->max_iter += 5;
 	if (keycode == 65453)
@@ -69,15 +69,17 @@ int	key_hook(int keycode, t_data *img)
 	if (img->max_iter < 1)
 		img->max_iter = 1;
 	if (keycode == 32)
+	{
 		img->colorint = img->colorint + 1 * (img->max_iter > img->colorint);
+		img->colorset = getlist(img->colorint, *img, img->colorint * 200);
+		img->colorpalette = colors(img->max_iter, *img);
+	}
 	if (keycode == 51)
 		img->c2 += 0.04;
 	if (keycode == 52)
 		img->c2 -= 0.04;
 	if (keycode == 49)
 		img->c1 += 0.04;
-	if (keycode == 50)
-		img->c1 -= 0.04;
 	else
 		key_hook_arrows(keycode, img);
 	refresh_image(img);
