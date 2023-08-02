@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:32:10 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/25 16:40:21 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/08/02 22:19:05 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	mandelbrot_calc(t_c c, t_data img)
 	mod = 0;
 	while (i < img.max_iter && mod < 2)
 	{
-		z = sum_i(pow_i(z), c);
+		z = sum_i(pow_c(z,img.power), c);
 		mod = module(z);
 		i++;
 	}

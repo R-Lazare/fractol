@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 17:37:11 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/25 17:49:04 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/08/02 22:17:20 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_data
 	int		endian;
 	void	*mlx;
 	double	xmin;
+	int		power;
 	double	c1;
 	double	c2;
 	double	xmax;
@@ -62,6 +63,7 @@ typedef struct nb_c
 }			t_c;
 
 int			facto(int n);
+t_c			pow_c(t_c c, int n);
 void		my_pixel_put(t_data *data, int x, int y, int color);
 int			create_trgb(int t, int r, int g, int b);
 int			key_hook(int keycode, t_data *img);

@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:31:54 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/18 16:50:36 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/08/02 22:13:56 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,17 @@ t_c	sum_i(t_c a, t_c b)
 double	module(t_c c)
 {
 	return (sqrt(pow(c.re, 2) + pow(c.img, 2)));
+}
+
+t_c	pow_c(t_c c, int n)
+{
+	t_c res;
+
+	res = c;
+	while (n > 1)
+	{
+		res = mult_c(res, c);
+		n--;
+	}
+	return (res);
 }

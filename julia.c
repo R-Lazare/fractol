@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:42:00 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/25 17:51:50 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/08/02 22:18:51 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	julia_calc(t_c c, t_c z0, t_data img)
 	i = 0;
 	while (i < img.max_iter)
 	{
-		z = sum_i(pow_i(z), c);
+		z = sum_i(pow_c(z,img.power), c);
 		if (module(z) > 2)
 			break ;
 		i++;

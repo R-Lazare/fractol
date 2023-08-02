@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:51:47 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/25 17:51:39 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/08/02 22:19:17 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	burningship_calc(t_c c, t_data img)
 		temp.img = z.img;
 		if (temp.img < 0)
 			temp.img = -temp.img;
-		z = sum_i(pow_i(temp), c);
+		z = sum_i(pow_c(z,img.power), c);
 		mod = module(z);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:18:35 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/25 17:50:12 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/08/02 22:18:30 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 int	main_mandelbrot(t_data img)
 {
 	img.zoom = 0;
-	img.width = 700;
-	img.height = 466;
+	img.width = 900;
+	img.height = 600;
 	img.xmin = -2;
+	img.power = 2;
 	img.max_iter = 20;
 	img.xmax = 1;
 	img.colorint = 1;
@@ -45,6 +46,7 @@ int	main_julia(t_data img)
 {
 	img.zoom = 0;
 	img.width = 700;
+	img.power = 2;
 	img.height = 700;
 	img.xmin = -1;
 	img.xmax = 1;
@@ -77,6 +79,7 @@ int	main_burningship(t_data img)
 	img.height = 700;
 	img.max_iter = 10;
 	img.xmin = -2;
+	img.power = 2;
 	img.xmax = 1.5;
 	img.colorint = 1;
 	img.ymin = -2;

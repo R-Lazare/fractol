@@ -6,7 +6,7 @@
 /*   By: rluiz <rluiz@student.42lehavre.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:32:00 by rluiz             #+#    #+#             */
-/*   Updated: 2023/07/25 17:50:35 by rluiz            ###   ########.fr       */
+/*   Updated: 2023/08/02 22:28:04 by rluiz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	key_hook_arrows(int keycode, t_data *img)
 		img->xmin = img->xmin + 0.1 * (1 / cosh(pow(img->zoom, 0.75)));
 		img->xmax = img->xmax + 0.1 * (1 / cosh(pow(img->zoom, 0.75)));
 	}
-	if (keycode == 50)
+	if (keycode == 50 || keycode == 39)
 		img->c1 -= 0.04;
 	refresh_image(img);
 	return (0);
@@ -74,12 +74,16 @@ int	key_hook(int keycode, t_data *img)
 		img->colorset = getlist(img->colorint, *img, img->colorint * 200);
 		img->colorpalette = colors(img->max_iter, *img);
 	}
-	if (keycode == 51)
+	if (keycode == 51 || keycode == 38)
 		img->c2 += 0.04;
-	if (keycode == 52)
+	if (keycode == 52 || keycode == 233)
 		img->c2 -= 0.04;
-	if (keycode == 49)
+	if (keycode == 49 || keycode == 34)
 		img->c1 += 0.04;
+	if (keycode == 112)
+		img->power += 1;
+	if (keycode == 111)
+		img->power -= 1;
 	else
 		key_hook_arrows(keycode, img);
 	refresh_image(img);
